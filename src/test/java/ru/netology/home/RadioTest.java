@@ -5,6 +5,24 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
     @Test
+    public void testNumberOfStation() {
+        Radio radio = new Radio(20);
+
+        Assertions.assertEquals(20, radio.getNumberOfStation());
+        Assertions.assertEquals(0, radio.getMinStation());
+        Assertions.assertEquals(19, radio.getMaxStation());
+    }
+
+    @Test
+    public void shouldSetStationIfMax25Station() {
+        Radio radio = new Radio(25);
+
+        radio.setCurrentStation(17);
+
+        Assertions.assertEquals(17, radio.getCurrentStation());
+    }
+
+    @Test
     public void shouldSetStation() {
         Radio radio = new Radio();
 
@@ -29,6 +47,15 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldSetMaxStationIfMax25Station() {
+        Radio radio = new Radio(25);
+
+        radio.setCurrentStation(24);
+
+        Assertions.assertEquals(24, radio.getCurrentStation());
+    }
+
+    @Test
     public void shouldSetNotMaxStation() {
         Radio radio = new Radio();
 
@@ -38,6 +65,15 @@ public class RadioTest {
         int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetNotMaxStationIfMax25Station() {
+        Radio radio = new Radio(25);
+
+        radio.setCurrentStation(25);
+
+        Assertions.assertEquals(0, radio.getCurrentStation());
     }
 
     @Test
@@ -103,6 +139,16 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldIncreaseNextMaxStationIfMax20Station() {
+        Radio radio = new Radio(20);
+        radio.setCurrentStation(19);
+
+        radio.nextStation();
+
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
     public void shouldIncreaseNextMinStation() {
         Radio radio = new Radio();
         radio.setCurrentStation(0);
@@ -126,6 +172,16 @@ public class RadioTest {
         int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldDowngradePrevMinStationIfMax20Station() {
+        Radio radio = new Radio(20);
+        radio.setCurrentStation(0);
+
+        radio.prevStation();
+
+        Assertions.assertEquals(19, radio.getCurrentStation());
     }
 
     @Test
@@ -253,6 +309,16 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldIncreaseIfMaxVolume() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(radio.getMaxVolume());
+
+        radio.increaseVolume();
+
+        Assertions.assertEquals(100, radio.getCurrentVolume());
+    }
+
+    @Test
     public void shouldIncreaseMinVolume() {
         Radio radio = new Radio();
         radio.setCurrentVolume(0);
@@ -263,6 +329,16 @@ public class RadioTest {
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldIncreaseIfMinVolume() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(radio.getMinVolume());
+
+        radio.increaseVolume();
+
+        Assertions.assertEquals(1, radio.getCurrentVolume());
     }
 
     @Test
@@ -302,5 +378,21 @@ public class RadioTest {
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldMinVolume() {
+        Radio radio = new Radio();
+        radio.setMinVolume(1);
+
+        Assertions.assertEquals(1, radio.getMinVolume());
+    }
+
+    @Test
+    public void shouldMaxVolume() {
+        Radio radio = new Radio();
+        radio.setMaxVolume(100);
+
+        Assertions.assertEquals(100, radio.getMaxVolume());
     }
 }
