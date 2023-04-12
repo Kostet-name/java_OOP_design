@@ -152,9 +152,6 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    /* Так как в условии не сказано, что Клиент должен иметь возможность выставлять
-    громкость через прямое указание её номера, то и тестировать, не будем.
-    Но выглядело бы это вот так:
     @Test
     public void shouldSetVolume() {
         Radio radio = new Radio();
@@ -166,6 +163,7 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldSetMaxVolume() {
         Radio radio = new Radio();
@@ -177,6 +175,7 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldSetNotMaxVolume() {
         Radio radio = new Radio();
@@ -188,6 +187,7 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldSetMinVolume() {
         Radio radio = new Radio();
@@ -199,6 +199,7 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldSetNotMinVolume() {
         Radio radio = new Radio();
@@ -210,6 +211,7 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldSetAnyVolume() {
         Radio radio = new Radio();
@@ -220,7 +222,7 @@ public class RadioTest {
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
-    }*/
+    }
 
     @Test
     public void shouldIncreaseVolume() {
@@ -266,7 +268,7 @@ public class RadioTest {
         Radio radio = new Radio();
         radio.setCurrentVolume(1);
 
-        radio.DowngradeVolume();
+        radio.downgradeVolume();
 
         int expected = 0;
         int actual = radio.getCurrentVolume();
@@ -279,7 +281,7 @@ public class RadioTest {
         Radio radio = new Radio();
         radio.setCurrentVolume(0);
 
-        radio.DowngradeVolume();
+        radio.downgradeVolume();
 
         int expected = 0;
         int actual = radio.getCurrentVolume();
@@ -292,7 +294,7 @@ public class RadioTest {
         Radio radio = new Radio();
         radio.setCurrentVolume(100);
 
-        radio.DowngradeVolume();
+        radio.downgradeVolume();
 
         int expected = 99;
         int actual = radio.getCurrentVolume();
